@@ -9,3 +9,6 @@ spring:
           filters:
             - PrefixPath=/api
             - AddResponseHeader=X-Powered-By, Medilabo Gateway Service
+
+  main:
+    allow-bean-definition-overriding: true
