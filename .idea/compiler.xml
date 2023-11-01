@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gateway" />
         <module name="patients" />
+        <module name="medilabo" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="gateway" options="-parameters" />
+      <module name="medilabo" options="-parameters" />
       <module name="patients" options="-parameters" />
     </option>
   </component>
