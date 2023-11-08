@@ -21,12 +21,10 @@ public class SecurityConfig {
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
-                .csrf().disable()
+                .httpBasic(Customizer.withDefaults()).csrf().disable()
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/patients/**").authenticated()
-                        .anyExchange().permitAll()
-                )
-                .httpBasic(Customizer.withDefaults());
+                        .anyExchange().permitAll());
 
         return http.build();
     }
@@ -36,13 +34,13 @@ public class SecurityConfig {
     public MapReactiveUserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername("user")
                 .password(passwordEncoder.encode("user"))
-                .roles("USER")
+                .roles("ADMIN")
                 .build();
         return new MapReactiveUserDetailsService(user);
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
