@@ -1,0 +1,14 @@
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: medilabo-patients-route
+          uri: http://localhost:9001
+          predicates:
+            - Path=/patients/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By, Medilabo Gateway Service
+server:
+  port: 9000
