@@ -1,5 +1,6 @@
-
 spring:
+  application:
+    name: gateway
   cloud:
     gateway:
       routes:
@@ -7,6 +8,13 @@ spring:
           uri: http://localhost:9001
           predicates:
             - Path=/patients/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By, Medilabo Gateway Service
+        - id: medilabo-doctor-route
+          uri: http://localhost:9002
+          predicates:
+            - Path=/doctor/**
           filters:
             - PrefixPath=/api
             - AddResponseHeader=X-Powered-By, Medilabo Gateway Service

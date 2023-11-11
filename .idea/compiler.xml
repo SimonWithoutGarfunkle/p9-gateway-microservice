@@ -6,14 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gateway" />
-        <module name="patients" />
         <module name="medilabo" />
+        <module name="gateway" />
+        <module name="doctors" />
+        <module name="patients" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="doctors" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="medilabo" options="-parameters" />
       <module name="patients" options="-parameters" />
