@@ -10,7 +10,6 @@ public class LoginController {
 
     @GetMapping("/auth/header")
     public String getAuthHeader(@RequestHeader("Authorization") String authHeader) {
-        System.out.println(authHeader);
         return authHeader;
     }
 }

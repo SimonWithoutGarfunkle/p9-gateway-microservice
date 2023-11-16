@@ -13,10 +13,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 
+/**
+ * Configuration class for handling security in the application using Spring WebFlux Security.
+ */
 @EnableWebFluxSecurity
 @Configuration
 public class SecurityConfig {
 
+    /**
+     * Configures security filters for different endpoints in the application.
+     *
+     * @param http The ServerHttpSecurity object to customize security settings.
+     * @return The configured SecurityWebFilterChain.
+     */
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
@@ -30,6 +39,12 @@ public class SecurityConfig {
     }
 
 
+    /**
+     * Provides a simple in-memory user details service with a default user.
+     *
+     * @param passwordEncoder The password encoder to encode user passwords.
+     * @return The configured MapReactiveUserDetailsService.
+     */
     @Bean
     public MapReactiveUserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername("user")
@@ -39,6 +54,11 @@ public class SecurityConfig {
         return new MapReactiveUserDetailsService(user);
     }
 
+    /**
+     * Provides an instance of BCryptPasswordEncoder for encoding passwords.
+     *
+     * @return The configured BCryptPasswordEncoder.
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
