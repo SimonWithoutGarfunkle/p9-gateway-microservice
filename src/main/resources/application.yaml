@@ -18,5 +18,13 @@ spring:
           filters:
             - PrefixPath=/api
             - AddResponseHeader=X-Powered-By, Medilabo Gateway Service
+        - id: medilabo-assessment-route
+          uri: http://localhost:9003
+          predicates:
+            - Path=/assessment/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By, Medilabo Gateway Service
+
 server:
   port: 9000
